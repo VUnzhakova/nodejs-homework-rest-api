@@ -5,7 +5,7 @@ const listContacts = async (req, res, next) => {
     const owner = req.user._id;
     let { page, limit } = req.query;
     const skip = (page - 1) * limit;
-    limit = parseInt(limit) > 20 ? 20 : parseInt(limit);
+    limit = parseInt(limit) > 10 ? 10 : parseInt(limit);
 
     const result = await Contact.find({ owner })
       .populate("owner", "email")
