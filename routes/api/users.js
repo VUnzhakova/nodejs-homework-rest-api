@@ -4,7 +4,7 @@ const { schemas } = require("../../models/User");
 
 const { validation } = require("../../middlewares");
 
-const { auth } = require("../../middlewares");
+const { auth, upload } = require("../../middlewares");
 
 const ctrl = require("../../controllers/users");
 
@@ -24,5 +24,7 @@ router.patch(
   validation(schemas.sub),
   ctrl.subUpdateUser
 );
+
+router.patch("/avatars", auth, upload.single("avatar"), ctrl.update);
 
 module.exports = router;
